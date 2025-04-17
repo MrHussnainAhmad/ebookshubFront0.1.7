@@ -6,6 +6,7 @@ import sfB from "./assets/books/scifi.jpg";
 import rB from "./assets/books/romance.jpg";
 import { Link } from "react-router-dom";
 import SeoRank from "../components/subComp/SeoHome";
+import Premium from "../components/Premium";
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
           <Link to="/library" className="cta-button">Explore Now</Link>
         </div>
       </section>
+      <Premium />
       {/* Featured Content Section */}
       <section className="featured-section">
         <h2>Featured Categories</h2>

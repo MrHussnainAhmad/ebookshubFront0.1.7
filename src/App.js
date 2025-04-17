@@ -24,6 +24,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminUsers from "./pages/AdminUsers";
 import AdminBooks from "./pages/AdminBooks";
 import AdminRoute from "./components/AdminRoute";
+import Premium from "./components/Premium";
 
 
 // Protected route component
@@ -81,6 +82,12 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
+                  <Route 
+          path="/premium" 
+          element={
+              <Premium />
+          } 
+        />
           <Route
             path="/library/:genre"
             element={

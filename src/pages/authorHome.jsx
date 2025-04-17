@@ -3,6 +3,7 @@ import "./styles/Home.css";
 import { Link } from "react-router-dom";
 import SeoRankAuthor from "../components/subComp/SeoHomeAuthor";
 import Trending from "../components/Trending";
+import Premium from "../components/Premium";
 
 function authorHome() {
   return (
@@ -15,6 +16,7 @@ function authorHome() {
           <Link to="/create" className="cta-special">Upload Now!</Link>
         </div>
       </section>
+      <Premium />
       <Trending />
       <SeoRankAuthor />
       {/* Call-to-Action Section */}

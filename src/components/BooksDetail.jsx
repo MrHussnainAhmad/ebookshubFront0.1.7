@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import BookService from "../services/BookService";
 import "./styles/BooksDetail.css";
+import { useAuth } from "../context/AuthContext";
 
 function BooksDetail() {
   const { id } = useParams();
@@ -12,6 +13,7 @@ function BooksDetail() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchBookData = async () => {
@@ -41,6 +43,10 @@ function BooksDetail() {
 
   const handleReadNow = async () => {
     try {
+      if (!isAuthenticated) {
+        alert('Please login to read this book');
+        return;
+      }
       const response = await BookService.getBookPdf(id);
       const { pdfUrl } = response;
       window.open(pdfUrl, "_blank");

@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: none;
   background-color: white;
   transition: all 0.3s ease;
   width: 300px; /* Fixed width for better centering */
