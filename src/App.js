@@ -64,7 +64,7 @@ function AppRoutes() {
     <div className="app-container">
       <Navbar />
       <div className="content">
-        <BrowserRouter basename="/">
+        <Router basename="/">
           <Routes>
             <Route path="/" element={<HomeRoute />} />
             <Route path="/auth" element={<Auth />} />
@@ -106,7 +106,7 @@ function AppRoutes() {
             <Route path="/create" element={<Create />} />
             <Route path="/Download" element={<Download />} />
           </Routes>
-        </BrowserRouter>
+        </Router>
       </div>
       <Footer />
     </div>
