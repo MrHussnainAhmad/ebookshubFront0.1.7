@@ -7,6 +7,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import Home from "./pages/Home";
 import AuthorHome from "./pages/authorHome";
 import Auth from "./pages/Auth";
@@ -25,7 +26,6 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminBooks from "./pages/AdminBooks";
 import AdminRoute from "./components/AdminRoute";
 import Premium from "./components/Premium";
-
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -64,52 +64,49 @@ function AppRoutes() {
     <div className="app-container">
       <Navbar />
       <div className="content">
-        <Routes>
-          <Route path="/" element={<HomeRoute />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route element={<AdminRoute />}>
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/books" element={<AdminBooks />} />
-          </Route>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/BookComponent" element={<BooksComponent />} />
-          <Route
-            path="/library"
-            element={
-              <ProtectedRoute>
-                <LibraryPage />
-              </ProtectedRoute>
-            }
-          />
-                  <Route 
-          path="/premium" 
-          element={
-              <Premium />
-          } 
-        />
-          <Route
-            path="/library/:genre"
-            element={
-              <ProtectedRoute>
-                <LibraryPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/book/:id"
-            element={
-              <ProtectedRoute>
-                <BooksDetail />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/Download" element={<Download />} />
-        </Routes>
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/" element={<HomeRoute />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route element={<AdminRoute />}>
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/admin/books" element={<AdminBooks />} />
+            </Route>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/BookComponent" element={<BooksComponent />} />
+            <Route
+              path="/library"
+              element={
+                <ProtectedRoute>
+                  <LibraryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/premium" element={<Premium />} />
+            <Route
+              path="/library/:genre"
+              element={
+                <ProtectedRoute>
+                  <LibraryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/book/:id"
+              element={
+                <ProtectedRoute>
+                  <BooksDetail />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/Download" element={<Download />} />
+          </Routes>
+        </BrowserRouter>
       </div>
       <Footer />
     </div>
