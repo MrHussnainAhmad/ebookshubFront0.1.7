@@ -1,0 +1,168 @@
+/* Auth.css */
+
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-bg {
+  background-image: url('../assets/login-bg.jpg');
+}
+
+.reader-bg {
+  background-image: url('../assets/signup-reader-bg.jpg');
+}
+
+.author-bg {
+  background-image: url('../assets/signup-athr-bg.jpg');
+}
+
+.reader-author-bg {
+  background-image: url('../assets/hero-bg.jpeg');
+}
+.auth-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-type-selection {
+  text-align: center;
+}
+
+.user-type-selection button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-type-selection button:hover {
+  background-color: #ccc;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-box input, .auth-box select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.auth-box button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth-box button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.note {
+  font-size: 0.8em;
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.auth-box p {
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.auth-box p:hover {
+  color: #007bff;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  color: #4CAF50;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.modal-note {
+  background-color: #FFF3E0;
+  padding: 10px;
+  border-radius: 5px;
+  border-left: 4px solid #FFA726;
+  text-align: left;
+  margin: 15px 0;
+}
+
+.modal-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.2s;
+}
+
+.modal-button:hover {
+  background-color: #3e8e41;
+}

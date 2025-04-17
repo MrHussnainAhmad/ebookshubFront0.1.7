@@ -1,0 +1,93 @@
+/* Legal Page CSS - Vintage Book Theme (Fully Responsive) */
+
+.legal-container {
+  margin-top: 60px;
+  padding: 80px;
+  background: #fdf5e6; /* Light parchment background */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'Merriweather', serif; /* Vintage serif font */
+  color: #3d2b1f; /* Warm dark brown text */
+  border: 2px solid #cfa67d; /* Elegant border */
+}
+
+.legal-container h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem); /* Scales based on screen size */
+  text-align: center;
+  margin-bottom: 30px;
+  color: #8b5a2b; /* Deep brown heading */
+  border-bottom: 4px solid #cfa67d;
+  padding-bottom: 14px;
+}
+
+.legal-container h2 {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  margin-top: 30px;
+  color: #7d4b29; /* Warm brown subheadings */
+  border-bottom: 2px dashed #cfa67d;
+  padding-bottom: 8px;
+}
+
+.legal-container p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.legal-container a {
+  color: #b05e26; /* Rustic orange accent */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.legal-container a:hover {
+  text-decoration: underline;
+  color: #8b3e1d;
+}
+
+.legal-container ul {
+  padding-left: 30px;
+}
+
+.legal-container ul li {
+  margin-bottom: 14px;
+  list-style: square;
+  color: #3d2b1f;
+}
+
+/* Full responsiveness for smaller devices */
+@media (max-width: 1024px) {
+  .legal-container {
+    max-width: 90%;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 30px;
+  }
+  .legal-container h1 {
+    font-size: 1.8rem;
+  }
+  .legal-container h2 {
+    font-size: 1.5rem;
+  }
+  .legal-container p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-container {
+    padding: 20px;
+  }
+  .legal-container h1 {
+    font-size: 1.6rem;
+  }
+  .legal-container h2 {
+    font-size: 1.3rem;
+  }
+  .legal-container p {
+    font-size: 1rem;
+  }
+}

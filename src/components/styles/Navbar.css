@@ -1,0 +1,339 @@
+/* Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 5%;
+}
+
+.logo {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3436;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #0984e3;
+}
+
+/* Center the search box */
+.navbar .search-box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background-color: white;
+  transition: all 0.3s ease;
+  width: 300px; /* Fixed width for better centering */
+}
+
+.search-box input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.search-box:focus-within {
+  border-color: #ccc !important;
+  background-color: white !important;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #2d3436;
+  outline: none;
+  text-align: center;
+}
+
+.search-box input::placeholder {
+  color: #a4b0be;
+}
+
+.search-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #2d3436;
+  transition: transform 0.2s ease;
+}
+
+.search-box button:hover {
+  transform: scale(1.1);
+  color: #0984e3;
+}
+
+/* Search Result Styles */
+.navbar .search-result {
+  position: absolute;
+  top: 100%; /* Position directly below navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 300px; /* Match search box width */
+  max-width: 300px;
+  z-index: 1001;
+  max-height: 60vh;
+  overflow-y: auto;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar .search-result.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.navbar .search-result ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .search-result li {
+  padding: 0.75rem 1rem;
+  font-size: 0.925rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar .search-result li:hover {
+  background-color: #f8f9fa;
+  transform: translateX(4px);
+}
+
+.navbar .search-result li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+/* Search result scrollbar styling */
+.navbar .search-result::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navbar .search-result::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.navbar .search-result::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+.navbar .search-result::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, #0984e3, #6c5ce7);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 2%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .search-box {
+    width: 200px; /* Smaller on medium screens */
+  }
+
+  .signup-btn {
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1rem 5%;
+  }
+
+  .search-box {
+    width: 100%; /* Full width on small screens */
+    margin-top: 10px; /* Add margin for spacing */
+  }
+
+  .navbar .search-result {
+    width: 100%; /* Full width for search results */
+    left: 0; /* Align to the left */
+    transform: translateX(0); /* Remove centering */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-box {
+    display: none !important; /* Hide search box on very small screens */
+  }
+
+  .search-result {
+    display: none !important; /* Hide search results on very small screens */
+  }
+
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .signup-btn {
+    margin-left: auto;
+  }
+}
+
+/* Flowing Div */
+.flowing-div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  background-color: #333;
+  color: white;
+  margin-top: 4.75rem; /* Space below Navbar */
+  max-height: 3vh; /* Adjusted height for better visibility */
+  animation: flow-right-to-left 15s linear infinite; /* Smooth scrolling animation */
+  overflow: hidden; /* Hide overflowing text */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 100000000;
+  width: 100%;
+}
+
+.flowing-div p {
+  font-size: .95rem; /* Slightly smaller font size for balance */
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap; /* Prevent text wrapping */
+  color: white;
+}
+
+.flowing-div-button {
+  background: white; /* White button background */
+  color: #0984e3; /* Blue text color */
+  border: none;
+  padding: 0.1rem 1rem; /* Button padding */
+  margin-left: 1%; /* Space between text and button */
+  border-radius: 2rem; /* Rounded corners */
+  cursor: pointer;
+  font-size: 0.7rem; /* Button text size */
+  font-weight: 600; /* Bold text */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+.flowing-div-button:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.profile-btn {
+  background-color: #4CAF50;  /* A different color than signup button */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.profile-btn:hover {
+  background-color: #3e8e41;
+}
+
+/* Navbar Download Button Styles */
+.download-btn {
+  margin-left: auto;
+  padding: 0 1rem;
+}
+
+.download-link {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.download-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+}
+
+/* Scrolled state styles */
+.navbar.scrolled .download-link {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .download-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+@media (max-width: 1170px) {
+  .download-btn {
+    display: none;
+  }
+}
+@media (max-width: 723px) {
+.signup-btn{
+  display: none;
+}
+}

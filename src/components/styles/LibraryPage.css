@@ -1,0 +1,325 @@
+/* General Styles */
+.library-page {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Georgia", serif; /* Elegant serif font */
+  background-color: #f5f5f5; /* Light gray background */
+  color: #333; /* Dark text color */
+  min-height: 100vh;
+  margin: 40px;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.libraryH1 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50; /* Deep blue title */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.library-search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative; /* For positioning the search icon */
+}
+
+.library-search-bar input {
+  width: 300px; /* Fixed width for desktop */
+  padding: 12px 20px; /* Increased padding for better touch targets */
+  border: 2px solid #ddd; /* Slightly thicker border for emphasis */
+  border-radius: 25px; /* Rounded corners for a softer look */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.library-search-bar input:focus {
+  border-color: #007bff; /* Highlight on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Subtle glow effect */
+}
+
+.library-search-bar .search-btn {
+display: none;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .library-search-bar input {
+    width: 100%; /* Full width for smaller screens */
+    padding: 10px 15px; /* Reduced padding for mobile */
+  }
+
+  .library-search-bar .search-btn {
+    display: none;
+  }
+}
+
+/* Categories Section */
+.libraryCategories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.libraryCategory-btn {
+  padding: 10px 25px;
+  background-color: #ecf0f1; /* Light gray background */
+  color: #2c3e50; /* Deep blue text */
+  border: 1px solid #bdc3c7; /* Subtle border */
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.libraryCategory-btn:hover {
+  background-color: #2c3e50; /* Deep blue hover */
+  color: #fff; /* White text on hover */
+  border-color: #2c3e50;
+}
+
+/* Books Grid */
+.libraryBooks-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%; /* If needed */
+  gap: 20px;
+}
+
+
+.libraryBook-card {
+  background-color: #fff; /* White background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.libraryBook-card:hover {
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.libraryBook-cover {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2c3e50; /* Deep blue title */
+}
+
+p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7f8c8d; /* Gray category text */
+}
+
+/* No Results Message */
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .library-search-bar input {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .libraryBooks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .libraryBook-cover {
+    height: 180px;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .libraryBooks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .libraryBook-cover {
+    height: 150px;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+}
+.library-controls {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  color: #2d3748;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.search-input::placeholder {
+  color: #a0aec0;
+}
+
+.search-button {
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.search-button:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.genre-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.genre-filter {
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  background-color: #f1f5f9;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.genre-filter:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+  color: #475569;
+}
+
+.genre-filter.active {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border-color: #4f46e5;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.genre-filter.active::after {
+  content: attr(data-count);
+  font-size: 0.8em;
+  opacity: 0.9;
+  margin-left: 0.3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .library-controls {
+    padding: 1.5rem;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .search-button {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .genre-filters {
+    gap: 0.5rem;
+  }
+  
+  .genre-filter {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}

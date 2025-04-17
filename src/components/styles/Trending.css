@@ -1,0 +1,168 @@
+/* General Styles */
+.trending {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.trending-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  position: relative;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+}
+
+.trending-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #007bff, #28a745);
+  margin: 1rem auto 0;
+  border-radius: 3px;
+}
+
+.trending .categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 1rem;
+}
+
+
+/*Trending*/
+.trendingCategory-card {
+  background-color: #fffdf7; /* Off-white background */
+  border: 1px solid #d4c9b8; /* Subtle border */
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 20%;
+}
+
+.trendingCategory-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.trendingCategory-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.trendingCategory-card img:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.trendingCategory-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #333;
+}
+
+.trendingCategory-card-genre {
+  font-size: 1rem;
+  margin-top: 5px;
+  color: #7a6e5c; /* Slightly lighter brown */
+}
+
+.trendingCategory-card-reads {
+  font-size: 0.9rem;
+  margin-top: 1px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.trendingRead-now-button {
+  background: linear-gradient(90deg, #007bff, #28a745);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.trendingRead-now-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/*Featured*/
+.category-card {
+  background-color: #fffdf7; /* Off-white background */
+  border: 1px solid #d4c9b8; /* Subtle border */
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* width: 35%; */
+}
+
+.category-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.category-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.category-card img:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.category-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #333;
+}
+
+.category-card-genre {
+  font-size: 1rem;
+  margin-top: 5px;
+  color: #7a6e5c; /* Slightly lighter brown */
+}
+
+.category-card-reads {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: #777;
+}
+
+.read-now-button {
+  background: linear-gradient(90deg, #007bff, #28a745);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.read-now-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

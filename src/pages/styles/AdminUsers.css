@@ -1,0 +1,149 @@
+/* AdminUsers.css */
+.admin-users-container {
+    padding: 2rem;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .admin-header h1 {
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .admin-nav a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  
+  .admin-nav a:hover {
+    color: #2980b9;
+  }
+  
+  .users-list {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    color: #7f8c8d;
+    font-weight: 600;
+  }
+  
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin: 0 0.25rem;
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  button[onClick*="Edit"] {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  button[onClick*="Delete"] {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  button[onClick*="Save"] {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  button[onClick*="Cancel"] {
+    background-color: #95a5a6;
+    color: white;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .pagination button {
+    background-color: #3498db;
+    color: white;
+    min-width: 80px;
+  }
+  
+  .pagination span {
+    color: #7f8c8d;
+    font-weight: 500;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-users-container {
+      padding: 1rem;
+    }
+  
+    th, td {
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+  
+    button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  
+    .pagination {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }

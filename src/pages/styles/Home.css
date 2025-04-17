@@ -1,0 +1,208 @@
+/* Home.css */
+
+/* General Reset */
+.home-container {
+  font-family: 'Playfair Display', serif; /* Elegant serif font */
+  color: #333; /* Default text color */
+  line-height: 1.6; /* Improved readability */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Hero Section */
+.hero {
+  background-image: url(../assets/hero-bg.jpeg); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  height: 70vh; /* Full-screen hero section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); /* Gradient overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px; /* Adds elegance */
+  animation: fadeIn 2s ease-in-out; /* Smooth fade-in effect */
+  color: white;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  animation: fadeIn 2.5s ease-in-out; /* Slightly delayed fade-in */
+}
+
+.cta-button {
+  background-color: #8b5a2b; /* Rich brown for buttons */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px; /* Rounded button */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: slideUp 3s ease-in-out; /* Button slides up */
+  margin-left: 1%;
+}
+
+.cta-button:hover {
+  background-color: #6d451f; /* Darker brown on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.cta-special {
+  background-color: #8b5a2b; /* Rich brown for buttons */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px; /* Rounded button */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: slideUp 3s ease-in-out; /* Button slides up */
+  margin-left: 1%;
+}
+.cta-special:hover {
+  background-color: #a08c7a; /* Darker brown on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Featured Content Section */
+.featured-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f4f1ea; /* Warm beige background */
+}
+
+.featured-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #5a4a3b; /* Warm brown for headings */
+  letter-spacing: 1px; /* Adds elegance */
+}
+
+.featuedCategories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.featuedCategory-card {
+  background-color: #fffdf7; /* Off-white background */
+  border: 1px solid #d4c9b8; /* Subtle border */
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featuedCategory-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.featuedCategory-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.featuedCategory-card img:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.featuedCategory-card p {
+  font-size: 1.1rem;
+  margin-top: 15px;
+  color: #7a6e5c; /* Slightly lighter brown */
+}
+
+/* Call-to-Action Section */
+.cta-section {
+  background-color: #5a4a3b; /* Warm brown background */
+  color: #fff; /* White text */
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 1px; /* Adds elegance */
+}
+
+.cta-section p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .featured-section h2 {
+    font-size: 2rem;
+  }
+
+  .featuedCategory-card p {
+    font-size: 1rem;
+  }
+}

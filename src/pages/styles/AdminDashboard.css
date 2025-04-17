@@ -1,0 +1,157 @@
+/* AdminDashboard.css */
+.admin-dashboard {
+    padding: 2rem;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .admin-header h1 {
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .admin-user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .admin-user-info button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .admin-user-info button:hover {
+    background-color: #c0392b;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .stat-card h3 {
+    color: #7f8c8d;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .stat-number {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .admin-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .admin-action-button {
+    background-color: #3498db;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .admin-action-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .admin-section {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .admin-section h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .admin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .admin-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #ecf0f1;
+    color: #34495e;
+  }
+  
+  .admin-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .admin-loading,
+  .admin-error {
+    text-align: center;
+    padding: 4rem;
+    color: #2c3e50;
+  }
+  
+  .admin-error {
+    color: #e74c3c;
+  }
+  
+  .admin-error button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-dashboard {
+      padding: 1rem;
+    }
+  
+    .admin-header {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  
+    .admin-actions {
+      flex-direction: column;
+    }
+  }
