@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import BookService from "../services/BookService";
 import "./styles/BooksDetail.css";
-import { useAuth } from "../context/AuthContext";
 
 function BooksDetail() {
   const { id } = useParams();
@@ -13,7 +12,6 @@ function BooksDetail() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchBookData = async () => {
@@ -21,14 +19,15 @@ function BooksDetail() {
         setLoading(true);
         const bookData = await BookService.getBookById(id);
         setBook(bookData);
-        
+
         // Set user rating if available
         if (bookData.userRating) {
           setUserRating(bookData.userRating);
         }
-        
+
         // Load comments
         const commentsData = await BookService.getBookComments(id);
+        console.log("Comments loaded:", commentsData); // Debug log
         setComments(commentsData);
       } catch (err) {
         console.error("Error fetching book details:", err);
@@ -43,10 +42,13 @@ function BooksDetail() {
 
   const handleReadNow = async () => {
     try {
-      if (!isAuthenticated) {
-        alert('Please login to read this book');
-        return;
-      }
+      console.log("Read Now clicked - About to increment view count");
+      
+      // Call the view increment API
+      const viewResponse = await BookService.incrementBookView(id);
+      console.log("View increment response:", viewResponse);
+      
+      // Get and open the PDF
       const response = await BookService.getBookPdf(id);
       const { pdfUrl } = response;
       window.open(pdfUrl, "_blank");
@@ -55,35 +57,43 @@ function BooksDetail() {
       alert("Could not open the PDF. Please try again later.");
     }
   };
-  
+
   const handleRateBook = async (rating) => {
     try {
       const response = await BookService.rateBook(id, rating);
       setUserRating(rating);
-      
+
       // Update book with new rating data
-      setBook(prev => ({
+      setBook((prev) => ({
         ...prev,
         Rating: response.newRating,
-        ratingCount: response.ratingCount
+        ratingCount: response.ratingCount,
       }));
-      
+
       alert("Thank you for rating this book!");
     } catch (error) {
       console.error("Error rating book:", error);
       alert("Failed to submit rating. Please try again.");
     }
   };
-  
+
   const handleAddComment = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) return;
-    
+
     try {
       setCommentLoading(true);
       const response = await BookService.addBookComment(id, newComment);
-      setComments(prev => [...prev, response.comment]);
-      setNewComment("");
+      console.log("Add comment response:", response); // Debug log
+
+      if (response.comment) {
+        // Verify the comment structure has user information
+        console.log("New comment user info:", response.comment.user);
+        setComments((prev) => [...prev, response.comment]);
+        setNewComment("");
+      } else {
+        alert("Failed to add comment. Please try again.");
+      }
     } catch (error) {
       console.error("Error adding comment:", error);
       alert("Failed to add comment. Please try again.");
@@ -126,12 +136,12 @@ function BooksDetail() {
     <div className="book-detail-page">
       <div className="cover-section">
         <img src={book.image} alt={book.title} className="detailBook-cover" />
-        
+
         {/* Rating Stars */}
         <div className="rating-stars">
           {[1, 2, 3, 4, 5].map((star) => (
-            <span 
-              key={star} 
+            <span
+              key={star}
               className={`star ${userRating >= star ? "filled" : ""}`}
               onClick={() => handleRateBook(star)}
             >
@@ -143,7 +153,7 @@ function BooksDetail() {
           </span>
         </div>
       </div>
-      
+
       <div className="book-info">
         <h1 className="detailH1">{book.title}</h1>
         <div className="book-metadata">
@@ -153,15 +163,20 @@ function BooksDetail() {
         <p className="detailBook-summary">{book.caption}</p>
         <div className="engagement-section">
           <div className="detailLikes-dislikes">
-            <span><i className="like-icon">👍</i> Rating: {book.Rating?.toFixed(1)} ({book.ratingCount || 0} ratings)</span>
-            <span><i className="dislike-icon">📚</i> Views: {book.views}</span>
+            <span>
+              <i className="like-icon">👍</i> Rating: {book.Rating?.toFixed(1)}{" "}
+              ({book.ratingCount || 0} ratings)
+            </span>
+            <span>
+              <i className="dislike-icon">📚</i> Views: {book.views}
+            </span>
           </div>
         </div>
-        
+
         {/* Comments Section */}
         <div className="comments-section">
           <h3>Comments ({comments.length})</h3>
-          
+
           <form onSubmit={handleAddComment} className="comment-form">
             <textarea
               value={newComment}
@@ -169,25 +184,30 @@ function BooksDetail() {
               placeholder="Add a comment..."
               rows="3"
             />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={commentLoading || !newComment.trim()}
             >
               {commentLoading ? "Posting..." : "Post Comment"}
             </button>
           </form>
-          
+
           <div className="comments-list">
             {comments.length > 0 ? (
               comments.map((comment) => (
-                <div key={comment._id} className="comment-item">
+                <div
+                  key={comment._id || Math.random()}
+                  className="comment-item"
+                >
                   <div className="comment-header">
-                    <img 
-                      src={comment.user.profileImage || "/default-avatar.png"} 
-                      alt={comment.user.username} 
-                      className="comment-avatar" 
+                    <img
+                      src={comment.user?.profileImage || "/default-avatar.png"}
+                      alt={comment.user?.username || "Unknown User"}
+                      className="comment-avatar"
                     />
-                    <span className="comment-username">{comment.user.username}</span>
+                    <span className="comment-username">
+                      {comment.user?.username || "Unknown User"}
+                    </span>
                     <span className="comment-date">
                       {new Date(comment.createdAt).toLocaleDateString()}
                     </span>
@@ -196,11 +216,13 @@ function BooksDetail() {
                 </div>
               ))
             ) : (
-              <p className="no-comments">No comments yet. Be the first to comment!</p>
+              <p className="no-comments">
+                No comments yet. Be the first to comment!
+              </p>
             )}
           </div>
         </div>
-        
+
         <div className="detailButtons">
           <button className="read-now-btn" onClick={handleReadNow}>
             Read Now

@@ -18,7 +18,7 @@ const createAuthHeader = () => {
 };
 
 // Base URL - make sure it's consistent
-const BASE_URL = 'https://ebookshub.up.railway.app';
+const BASE_URL = 'http://192.168.100.35:3001';
 
 const BookService = {
   // Public methods that don't require authentication
@@ -161,6 +161,7 @@ const BookService = {
   getBookComments: async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/${id}/comments`, createAuthHeader());
+      console.log('Comments data received:', response.data); // Add logging
       return response.data;
     } catch (error) {
       console.error('Error fetching book comments:', error);
@@ -168,17 +169,16 @@ const BookService = {
     }
   },
   
-  // Add a comment to a book - fixed path
   addBookComment: async (id, text) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/books/${id}/comments`, { text }, createAuthHeader());
+      console.log('Comment added response:', response.data); // Add logging
       return response.data;
     } catch (error) {
       console.error('Error adding comment:', error);
       return { success: false, message: 'Failed to add comment' };
     }
   },
-  
   // Get trending books (top rated)
   getTrendingBooks: async (limit = 5) => {
     try {
@@ -224,7 +224,7 @@ const BookService = {
   // Get user's books
   getUserBooks: async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/books/user`, createAuthHeader());
+      const response = await axios.get(`${BASE_URL}/api/books/user`, createAuthHeader());
       return response.data;
     } catch (error) {
       console.error('Error fetching user books:', error);
