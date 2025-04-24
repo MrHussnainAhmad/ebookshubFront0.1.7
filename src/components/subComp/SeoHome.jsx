@@ -20,7 +20,7 @@ const SeoRank = () => {
         <p className="hero-subtitle">
           Dive into a vast collection of free ebooks across all genres. No subscriptions, no hidden fees—just endless reading.
         </p>
-        <button className="cta-button1" onClick={handleReadClick}>Start Reading Now</button>
+        <button className="cta-button" onClick={handleReadClick}>Start Reading Now</button>
       </div>
 
       {/* Features Grid */}

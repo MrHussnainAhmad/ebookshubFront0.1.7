@@ -1,0 +1,324 @@
+/* PremiumBookDetails.css - Styling for PremiumBookDetails.jsx */
+
+/* Global Styles */
+:root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --accent: #4cc9f0;
+    --bg: #f8f9fa;
+    --text: #212529;
+    --light-gray: #e9ecef;
+    --dark-gray: #6c757d;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+  }
+  
+  /* Book Details Container */
+  .book-details-container {
+    padding: 4rem 10%;
+    background-color: var(--bg);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Book Header */
+  .book-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  
+  .book-title {
+    font-size: 2.5rem;
+    color: var(--text);
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 0;
+  }
+  
+  .premium-badge {
+    background: var(--gradient);
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+  }
+  
+  /* Book Content Layout */
+  .book-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  /* Book Image Section */
+  .book-image-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .book-cover-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Book Meta Information */
+  .book-meta {
+    margin-bottom: 2rem;
+  }
+  
+  .book-author {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  
+  .book-genre {
+    color: var(--dark-gray);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Book Rating Section */
+  .book-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .star-container {
+    display: flex;
+    margin-right: 0.5rem;
+  }
+  
+  .star-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+  }
+  
+  .star-filled {
+    color: #ffc107;
+  }
+  
+  .star-empty {
+    color: var(--light-gray);
+  }
+  
+  .book-views {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+  }
+  
+  /* Book Actions */
+  .book-actions {
+    margin-top: auto;
+  }
+  
+  .read-button {
+    display: block;
+    background: var(--gradient);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .read-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  /* Book Details Section */
+  .book-details-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .book-description {
+    margin-bottom: 2rem;
+  }
+  
+  .book-description h3 {
+    font-size: 1.8rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    position: relative;
+  }
+  
+  .book-description h3:after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: var(--gradient);
+    bottom: -8px;
+    left: 0;
+    border-radius: 2px;
+  }
+  
+  .book-description p {
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+  
+  /* Book Uploader */
+  .book-uploader h3 {
+    font-size: 1.4rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .uploader-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .uploader-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+  }
+  
+  /* Navigation Links */
+  .navigation-links {
+    margin-top: 2rem;
+  }
+  
+  .back-link {
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+  }
+  
+  .back-link:hover {
+    color: var(--secondary);
+    transform: translateX(-5px);
+  }
+  
+  .back-link:before {
+    content: "←";
+    margin-right: 0.5rem;
+  }
+  
+  /* Loading and Error States */
+  .loading-container,
+  .error-container,
+  .not-found-container {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin: 4rem 10%;
+  }
+  
+  .loading-container h2,
+  .error-container h2,
+  .not-found-container h2 {
+    font-size: 2rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  
+  .loading-message {
+    color: var(--dark-gray);
+    font-size: 1.2rem;
+  }
+  
+  .error-message {
+    color: #e63946;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .book-details-container {
+      padding: 3rem 5%;
+    }
+    
+    .book-content {
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .book-title {
+      font-size: 2rem;
+    }
+    
+    .book-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .book-cover-image {
+      height: 350px;
+    }
+    
+    .book-image-section {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .book-details-container {
+      padding: 2rem 3%;
+    }
+    
+    .book-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .premium-badge {
+      margin-top: 1rem;
+    }
+    
+    .book-title {
+      font-size: 1.8rem;
+    }
+    
+    .book-cover-image {
+      height: 280px;
+    }
+    
+    .book-description h3 {
+      font-size: 1.5rem;
+    }
+    
+    .book-description p {
+      font-size: 1rem;
+    }
+  }

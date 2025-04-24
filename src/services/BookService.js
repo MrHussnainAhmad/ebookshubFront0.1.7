@@ -18,25 +18,68 @@ const createAuthHeader = () => {
 };
 
 // Base URL - make sure it's consistent
-const BASE_URL = 'http://192.168.100.35:3001';
+const BASE_URL = 'http://192.168.3.58:3001';
+
+// Add book transformation function to ensure consistent ID handling
+const transformBookData = (books) => {
+  if (Array.isArray(books)) {
+    return books.map(book => ({
+      ...book,
+      _id: book._id || book.id // Ensure consistent ID field
+    }));
+  }
+  return books;
+};
 
 const BookService = {
   // Public methods that don't require authentication
   getPublicFeaturedBooks: async () => {
     try {
-      // Use direct axios instead of API instance to bypass auth interceptor
       const response = await axios.get(`${BASE_URL}/api/books/public/featured`);
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching public featured books:', error);
       return [];
     }
   },
 
+  // Add these methods to your BookService.js
+
+// Get a single premium book by ID (public access)
+getPremiumBookById: async (id) => {
+  try {
+    // Use the public endpoint that doesn't require authentication
+    const response = await axios.get(`${BASE_URL}/api/books/public/premium/${id}`);
+    
+    // Still increment view count if possible (with auth if available)
+    try {
+      await BookService.incrementBookView(id);
+    } catch (viewError) {
+      console.log('View increment skipped for unauthenticated user');
+    }
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching premium book details:', error);
+    return null;
+  }
+},
+
+// Get PDF for a premium book (public access)
+getPremiumBookPdf: async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/books/public/premium/${id}/pdf`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching premium book PDF:', error);
+    return { pdfUrl: null };
+  }
+},
+
   getPublicTrendingBooks: async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/public/trending`);
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching public trending books:', error);
       return [];
@@ -53,7 +96,7 @@ const BookService = {
     }
   },
 
-  // Get all books with optional filters - explicitly use direct axios with auth header
+  // Get all books with optional filters
   getBooks: async (filters = {}) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books`, { 
@@ -61,49 +104,55 @@ const BookService = {
         ...createAuthHeader()
       });
       console.log('Books fetched successfully:', response.data);
+      
+      if (response.data.books) {
+        response.data.books = transformBookData(response.data.books);
+      }
+      
       return response.data;
     } catch (error) {
       console.error('Error fetching books:', error);
-      // Don't throw - return empty data structure instead
       return { books: [], currentPage: 1, totalBooks: 0, totalPages: 0 };
     }
   },
 
-  // Get premium books - fixed path
-  getPremiumBooks: async (limit = 2) => {
+  // Get premium books
+  getPremiumBooks: async (limit = 4) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/premium`, {
         params: { limit },
         ...createAuthHeader()
       });
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching premium books:', error);
       return [];
     }
   },
 
-  // Get new books - fixed path
-  getNewBooks: async (limit = 4) => {
+  // Get new books
+  getNewBooks: async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/books/new`, {
-        params: { limit },
-        ...createAuthHeader()
-      });
-      return response.data;
+      const response = await axios.get(`${BASE_URL}/api/books/new`, createAuthHeader());
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching new books:', error);
       return [];
     }
   },
   
-  // Get books by genre - fixed path
+  // Get books by genre
   getBooksByGenre: async (genre, page = 1, limit = 10) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/genre/${genre}`, {
         params: { page, limit },
         ...createAuthHeader()
       });
+      
+      if (response.data.books) {
+        response.data.books = transformBookData(response.data.books);
+      }
+      
       return response.data;
     } catch (error) {
       console.error(`Error fetching ${genre} books:`, error);
@@ -146,7 +195,7 @@ const BookService = {
     }
   },
   
-  // Rate a book - fixed path
+  // Rate a book
   rateBook: async (id, rating) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/books/${id}/rate`, { rating }, createAuthHeader());
@@ -157,11 +206,11 @@ const BookService = {
     }
   },
   
-  // Get book comments - fixed path
+  // Get book comments
   getBookComments: async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/${id}/comments`, createAuthHeader());
-      console.log('Comments data received:', response.data); // Add logging
+      console.log('Comments data received:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching book comments:', error);
@@ -169,26 +218,28 @@ const BookService = {
     }
   },
   
+  // Add book comment
   addBookComment: async (id, text) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/books/${id}/comments`, { text }, createAuthHeader());
-      console.log('Comment added response:', response.data); // Add logging
+      console.log('Comment added response:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error adding comment:', error);
       return { success: false, message: 'Failed to add comment' };
     }
   },
-  // Get trending books (top rated)
-  getTrendingBooks: async (limit = 5) => {
+  
+  // Get top rated books - FIXED: using correct endpoint
+  getTopRatedBooks: async (limit = 5) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/top-rated`, { 
         params: { limit },
         ...createAuthHeader()
       });
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
-      console.error('Error fetching trending books:', error);
+      console.error('Error fetching top-rated books:', error);
       return [];
     }
   },
@@ -200,7 +251,7 @@ const BookService = {
         params: { limit },
         ...createAuthHeader()
       });
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching recommended books:', error);
       return [];
@@ -214,7 +265,7 @@ const BookService = {
         params: { query },
         ...createAuthHeader()
       });
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error searching books:', error);
       return [];
@@ -225,7 +276,7 @@ const BookService = {
   getUserBooks: async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/user`, createAuthHeader());
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching user books:', error);
       return [];
@@ -247,12 +298,19 @@ const BookService = {
   getDailyRecommendations: async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/daily-recommendations`, createAuthHeader());
-      return response.data;
+      return transformBookData(response.data);
     } catch (error) {
       console.error('Error fetching daily recommendations:', error);
       return [];
     }
+  },
+  
+  // For backward compatibility
+  getTrendingBooks: async (limit = 5) => {
+    return BookService.getTopRatedBooks(limit);
   }
 };
+
+
 
 export default BookService;

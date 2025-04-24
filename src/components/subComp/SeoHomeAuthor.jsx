@@ -18,9 +18,9 @@ const SeoRankAuthor = () => {
       <div className="hero-section">
         <h1 className="hero-title">Free self-Publishing: Upload Unlimited Books Online</h1>
         <p className="hero-subtitle">
-          Dive into a vast collection of free ebooks across all genres. No subscriptions, no hidden fees—just endless uploading.
+          Dive into a vast collection of free ebooks across all genres. Just endless uploading.
         </p>
-        <button className="cta-button1" onClick={handlePublishClick}>Publish Now</button>
+        <button className="cta-button" onClick={handlePublishClick}>Publish Now</button>
       </div>
 
       {/* Features Grid */}

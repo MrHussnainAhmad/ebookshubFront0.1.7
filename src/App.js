@@ -25,6 +25,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminBooks from "./pages/AdminBooks";
 import AdminRoute from "./components/AdminRoute";
 import Premium from "./components/Premium";
+import PremiumBookDetails from "./components/PremiumBookDetails";
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -82,6 +83,8 @@ function AppRoutes() {
             }
           />
           <Route path="/premium" element={<Premium />} />
+          <Route path="/book/premium/:id" element={<PremiumBookDetails />} />
+
           <Route
             path="/library/:genre"
             element={
@@ -98,6 +101,7 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
+          <Route path="/books/:id" element={<BooksDetail />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />

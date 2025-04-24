@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SeoRankAuthor from "../components/subComp/SeoHomeAuthor";
 import Trending from "../components/Trending";
 import Premium from "../components/Premium";
+import NewArrivals from "../components/NewArrivals";
 
 function authorHome() {
   return (
@@ -17,6 +18,7 @@ function authorHome() {
         </div>
       </section>
       <Premium />
+      <NewArrivals />
       <Trending />
       <SeoRankAuthor />
       {/* Call-to-Action Section */}

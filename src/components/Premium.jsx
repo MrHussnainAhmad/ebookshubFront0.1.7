@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BookService from '../services/BookService';
-import { useAuth } from '../context/AuthContext';
 import './styles/Premium.css';
 
 const Premium = () => {
   const [premiumBooks, setPremiumBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchPremiumBooks = async () => {
       try {
         setLoading(true);
-        // For non-logged in users, we'll use a public endpoint or handle it differently
-        // since we want to show premium books to everyone
-        const books = await BookService.getPremiumBooks(4); // Get 4 premium books
+        const books = await BookService.getPremiumBooks(4);
         setPremiumBooks(books);
       } catch (err) {
         console.error('Error fetching premium books:', err);
@@ -26,33 +22,32 @@ const Premium = () => {
       }
     };
 
-    // Fetch premium books regardless of authentication status
     fetchPremiumBooks();
   }, []);
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <h2 className="page-title">Premium Books</h2>
-        <p className="loading-message">Loading premium content...</p>
+      <div className="premiumloading-container">
+        <h2 className="premiumpage-title">Premium Books</h2>
+        <p className="premiumloading-message">Loading premium content...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="error-container">
-        <h2 className="page-title">Premium Books</h2>
-        <p className="error-message">{error}</p>
+      <div className="premiumerror-container">
+        <h2 className="premiumpage-title">Premium Books</h2>
+        <p className="premiumerror-message">{error}</p>
       </div>
     );
   }
 
   if (premiumBooks.length === 0) {
     return (
-      <div className="empty-container">
-        <h2 className="page-title">Premium Books</h2>
-        <p className="empty-message">Require Login!</p>
+      <div className="premiumempty-container">
+        <h2 className="premiumpage-title">Premium Books</h2>
+        <p>No premium books available at the moment.</p>
       </div>
     );
   }
@@ -60,28 +55,20 @@ const Premium = () => {
   return (
     <div className="premium-container">
       <div className="premium-header">
-        <h2 className="page-title">Premium Books</h2>
+        <h2 className="premiumpage-title">Premium Books</h2>
         <div className="premium-badge">
           Premium Content
         </div>
-        {!isAuthenticated && (
-          <div className="login-notice">
-            <p>Log in to read, rate, and comment on premium books.</p>
-            <Link to="/login" className="login-button">
-              Login
-            </Link>
-          </div>
-        )}
       </div>
 
-      <div className="books-grid">
+      <div className="premiumbooks-grid">
         {premiumBooks.map((book) => (
-          <div key={book._id} className="book-card">
-            <div className="book-image-container">
+          <div key={book._id} className="premiumbook-card">
+            <div className="premiumbook-image-container">
               <img 
                 src={book.image} 
                 alt={book.title} 
-                className="book-image"
+                className="premiumbook-image"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = '/placeholder-book.png';
@@ -92,12 +79,12 @@ const Premium = () => {
               </div>
             </div>
 
-            <div className="book-details">
-              <h3 className="book-title">{book.title}</h3>
-              <p className="book-author">by {book.author}</p>
+            <div className="premiumbook-details">
+              <h3 className="premiumbook-title">{book.title}</h3>
+              <p className="premiumbook-author">by {book.author}</p>
               
-              <div className="book-rating">
-                <div className="star-container">
+              <div className="premiumbook-rating">
+                <div className="premiumstar-container">
                   {[...Array(5)].map((_, i) => (
                     <svg 
                       key={i} 
@@ -109,27 +96,20 @@ const Premium = () => {
                     </svg>
                   ))}
                 </div>
-                <span className="review-count">
+                <span className="premiumreview-count">
                   ({book.ratingCount || 0} {book.ratingCount === 1 ? 'review' : 'reviews'})
                 </span>
               </div>
               
-              <p className="book-caption">{book.caption}</p>
+              <p className="premiumbook-caption">{book.caption}</p>
               
-              <div className="book-action">
+              <div className="premiumbook-action">
                 <Link
-                  to={`/book/${book._id}`}
-                  className="read-button"
+                  to={`/book/premium/${book._id}`}
+                  className="premiumread-button"
                 >
-                  View Details
+                  Read Now
                 </Link>
-                {!isAuthenticated && (
-                  <div className="premium-access-info">
-                    <Link to="/login" className="premium-login-link">
-                      Login to read
-                    </Link>
-                  </div>
-                )}
               </div>
             </div>
           </div>

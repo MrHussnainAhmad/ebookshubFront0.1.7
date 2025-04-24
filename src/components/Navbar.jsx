@@ -45,7 +45,7 @@ function Navbar() {
     setSearchResult([]);
   };
 
-  const showSearchBar = !["/auth", "/library"].includes(location.pathname);
+  const showSearchBar = !["/auth", "/library","/library/Fiction", "/library/Fantasy", "/library/Science Fiction", "/library/Mystery", "/library/Thriller", "/library/Romance", "/library/Historical Fiction", "/library/Horror", "/library/Adventure", "/library/Non-fiction", "/library/Biography", "/library/Autobiography", "/library/Memoir", "/library/Self-help", "/library/Business", "/library/Philosophy", "/library/Children", "/library/Young Adult", "/library/Poetry", "/library/Drama", "/library/Humor", "/library/Spirituality", "/library/Health & Wellness", "/library/Travel", "/library/Other"].includes(location.pathname);
   const showAuthButton = location.pathname !== "/auth";
 
   return (
