@@ -23,7 +23,7 @@
 
 .profile-container {
   font-family: 'Poppins', sans-serif;
-  max-width: 800px;
+  max-width: auto;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -39,8 +39,8 @@
 }
 
 .profile-avatar {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   margin: 0 auto 1.5rem;
   display: flex;
@@ -416,4 +416,72 @@
     margin-bottom: 1rem;
     margin-right: 0;
   }
+}
+/* Enhanced Delete Button */
+.profile-delete-button {
+  background-color: rgba(230, 57, 70, 0.1);
+  color: var(--error);
+  border: 1px solid var(--error);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 1; /* Ensure full visibility */
+  position: relative; /* For absolute positioning of tooltip */
+}
+
+.profile-delete-button:hover {
+  background-color: var(--error);
+  color: white;
+  transform: scale(1.1);
+}
+
+.profile-delete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add a tooltip for better UX */
+.profile-delete-button::after {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.profile-delete-button:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Make book item header more distinct */
+.profile-book-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+/* Improve book item styling for better readability */
+.profile-book-item {
+  background-color: var(--bg);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative; /* For potential absolute positioned elements */
 }

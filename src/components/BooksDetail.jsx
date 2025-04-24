@@ -13,50 +13,50 @@ function BooksDetail() {
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchBookData = async () => {
-      try {
-        setLoading(true);
-        const bookData = await BookService.getBookById(id);
-        setBook(bookData);
-
-        // Set user rating if available
-        if (bookData.userRating) {
-          setUserRating(bookData.userRating);
-        }
-
-        // Load comments
-        const commentsData = await BookService.getBookComments(id);
-        console.log("Comments loaded:", commentsData); // Debug log
-        setComments(commentsData);
-      } catch (err) {
-        console.error("Error fetching book details:", err);
-        setError("Failed to load book details. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBookData();
-  }, [id]);
-
-  const handleReadNow = async () => {
+useEffect(() => {
+  const fetchBookData = async () => {
     try {
-      console.log("Read Now clicked - About to increment view count");
-      
-      // Call the view increment API
-      const viewResponse = await BookService.incrementBookView(id);
-      console.log("View increment response:", viewResponse);
-      
-      // Get and open the PDF
-      const response = await BookService.getBookPdf(id);
-      const { pdfUrl } = response;
-      window.open(pdfUrl, "_blank");
-    } catch (error) {
-      console.error("Error opening PDF:", error);
-      alert("Could not open the PDF. Please try again later.");
+      setLoading(true);
+      const bookData = await BookService.getBookById(id);
+      setBook(bookData);
+
+      // Set user rating if available
+      if (bookData.userRating) {
+        setUserRating(bookData.userRating);
+      }
+
+      // Load comments
+      const commentsData = await BookService.getBookComments(id);
+      console.log("Comments loaded:", commentsData); // Debug log
+      setComments(commentsData);
+    } catch (err) {
+      console.error("Error fetching book details:", err);
+      setError("Failed to load book details. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
+
+  fetchBookData();
+}, [id]);
+
+const handleReadNow = async () => {
+  try {
+    console.log("Read Now clicked - About to increment view count");
+    
+    // Call the view increment API
+    const viewResponse = await BookService.incrementBookView(id);
+    console.log("View increment response:", viewResponse);
+    
+    // Get and open the PDF
+    const response = await BookService.getBookPdf(id);
+    const { pdfUrl } = response;
+    window.open(pdfUrl, "_blank");
+  } catch (error) {
+    console.error("Error opening PDF:", error);
+    alert("Could not open the PDF. Please try again later.");
+  }
+};
 
   const handleRateBook = async (rating) => {
     try {

@@ -110,12 +110,12 @@ function Navbar() {
         )}
       </div>
 
-      <div className="flowing-div">
+      {/* <div className="flowing-div">
         <p>
           Help keep free books available! Your small donation helps maintain the website and app and supports authors and readers.
         </p>
         <button className="flowing-div-button">Donate!</button>
-      </div>
+      </div> */}
     </>
   );
 }

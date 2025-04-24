@@ -5,12 +5,11 @@ import API from "../services/authApi";
 import "./styles/Profile.css";
 
 // You could use icons from a library like react-icons
-import { 
-  FaUser, 
-  FaLock, 
-  FaTrash, 
+import {
+  FaUser,
+  FaLock,
   FaSignOutAlt,
-  FaCircleNotch
+  FaCircleNotch,
 } from "react-icons/fa";
 
 const Profile = () => {
@@ -33,7 +32,7 @@ const Profile = () => {
   // Define fetchUserBooks as a useCallback to ensure consistent reference
   const fetchUserBooks = useCallback(async () => {
     if (!user) return; // Don't fetch if user is not available
-    
+
     setIsLoading(true);
     setBooksError("");
     console.log("Fetching books for author:", user?.username);
@@ -65,7 +64,7 @@ const Profile = () => {
     if (user?.userType === "author") {
       // Call once immediately
       fetchUserBooks();
-      
+
       // Set up interval
       const intervalId = setInterval(() => {
         fetchUserBooks();
@@ -79,7 +78,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       if (!user) return;
-      
+
       try {
         const response = await API.get("/auth/user-details");
 
@@ -121,7 +120,7 @@ const Profile = () => {
         // Since we're using the AuthContext, we need to update the user state
         // This might require adding a function to AuthContext to update user
         setEditMode(false);
-        
+
         // Refresh user data
         const userResponse = await API.get("/auth/user-details");
         if (userResponse.data?.user) {
@@ -171,9 +170,9 @@ const Profile = () => {
   const handleSexUpdate = async () => {
     try {
       setError("");
-  
+
       const response = await API.put("/auth/update-sex", { sex });
-  
+
       if (response.data?.user) {
         // Refresh user data
         const userResponse = await API.get("/auth/user-details");
@@ -188,10 +187,14 @@ const Profile = () => {
       setError(error.response?.data?.message || "Failed to update sex");
     }
   };
-  
+
   const handleDeleteBook = async (bookId) => {
     // Confirm deletion with the user
-    if (window.confirm("Are you sure you want to delete this book? This action cannot be undone.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this book? This action cannot be undone."
+      )
+    ) {
       try {
         setIsDeleting(true);
         await API.delete(`/books/${bookId}`);
@@ -257,7 +260,7 @@ const Profile = () => {
                   className="profile-input"
                   placeholder="Enter new username"
                 />
-                <button 
+                <button
                   onClick={handleUsernameUpdate}
                   className="profile-save-button"
                 >
@@ -267,7 +270,7 @@ const Profile = () => {
             ) : (
               <div className="profile-option-row">
                 <span className="profile-option-text">{user?.username}</span>
-                <button 
+                <button
                   onClick={() => setEditMode(true)}
                   className="profile-edit-button"
                 >
@@ -295,10 +298,7 @@ const Profile = () => {
               <option value="Other">Other</option>
               <option value="Prefer not to say">Prefer not to say</option>
             </select>
-            <button 
-              onClick={handleSexUpdate}
-              className="profile-save-button"
-            >
+            <button onClick={handleSexUpdate} className="profile-save-button">
               Update
             </button>
           </div>
@@ -316,7 +316,10 @@ const Profile = () => {
                 type="password"
                 value={passwordData.currentPassword}
                 onChange={(e) =>
-                  setPasswordData({ ...passwordData, currentPassword: e.target.value })
+                  setPasswordData({
+                    ...passwordData,
+                    currentPassword: e.target.value,
+                  })
                 }
                 className="profile-input"
                 placeholder="Enter current password"
@@ -328,13 +331,16 @@ const Profile = () => {
                 type="password"
                 value={passwordData.newPassword}
                 onChange={(e) =>
-                  setPasswordData({ ...passwordData, newPassword: e.target.value })
+                  setPasswordData({
+                    ...passwordData,
+                    newPassword: e.target.value,
+                  })
                 }
                 className="profile-input"
                 placeholder="Enter new password"
               />
             </div>
-            <button 
+            <button
               onClick={handlePasswordUpdate}
               className="profile-save-button"
             >
@@ -382,15 +388,22 @@ const Profile = () => {
                       onClick={() => handleDeleteBook(book._id)}
                       disabled={isDeleting}
                     >
-                      <FaTrash size={16} />
+                      🗑️
                     </button>
                   </div>
-                  <p className="profile-book-genre">Genre: {book.genre || "Unknown"}</p>
+                  <p className="profile-book-genre">
+                    Genre: {book.genre || "Unknown"}
+                  </p>
                   <div className="profile-book-stats">
-                    <span className="profile-book-views">Views: {book.views || 0}</span>
+                    <span className="profile-book-views">
+                      Views: {book.views || 0}
+                    </span>
                     <span className="profile-book-rating">
-                      Rating: {book.Rating !== undefined ? book.Rating : book.rating || 0}/5
-                      ({book.ratingCount || 0} ratings)
+                      Rating:{" "}
+                      {book.Rating !== undefined
+                        ? book.Rating
+                        : book.rating || 0}
+                      /5 ({book.ratingCount || 0} ratings)
                     </span>
                   </div>
                 </div>

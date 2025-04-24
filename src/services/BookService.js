@@ -18,7 +18,7 @@ const createAuthHeader = () => {
 };
 
 // Base URL - make sure it's consistent
-const BASE_URL = 'http://192.168.3.58:3001';
+const BASE_URL = 'https://ebookshub.up.railway.app';
 
 // Add book transformation function to ensure consistent ID handling
 const transformBookData = (books) => {
@@ -50,14 +50,7 @@ getPremiumBookById: async (id) => {
   try {
     // Use the public endpoint that doesn't require authentication
     const response = await axios.get(`${BASE_URL}/api/books/public/premium/${id}`);
-    
-    // Still increment view count if possible (with auth if available)
-    try {
-      await BookService.incrementBookView(id);
-    } catch (viewError) {
-      console.log('View increment skipped for unauthenticated user');
-    }
-    
+    // Remove the view increment from here
     return response.data;
   } catch (error) {
     console.error('Error fetching premium book details:', error);
@@ -165,7 +158,6 @@ getPremiumBookPdf: async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/books/${id}`, createAuthHeader());
       // Increment view count when fetching book details
-      await BookService.incrementBookView(id);
       return response.data;
     } catch (error) {
       console.error('Error fetching book details:', error);
